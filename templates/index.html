@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/style1.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-loading-overlay/2.1.7/loadingoverlay.min.js"></script> -->
+    <title>Home</title>
+</head>
+<body>
+
+    {# Category #}
+    <main class="site-wrapper" >  
+  <div class="pt-table desktop-768"  id = "app">
+    <div class="pt-tablecell page-home relative" style="background-image: url(https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
+    background-position: center;
+    background-size: cover;">
+                    <div class="overlay"></div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+                                <div class="page-title  home text-center">
+                                  <span class="heading-page"> Welcome to My Page
+                                  </span>
+                                    <p class="mt20">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                                </div>
+                                <div class="hexagon-menu clear">
+                                    <div class="hexagon-item">
+                                        <div class="hex-item">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                        <div class="hex-item">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                        <a @click="updateFilter('all')" class="hex-content">
+                                            <span class="hex-content-inner">
+                                                <span class="icon">
+                                                    <i class="fa fa-universal-access"></i>
+                                                </span>
+                                                <button
+                                                    :class="{ 'active': filterCategory === 'all' }"
+                                                    >
+                                                    <span class="title">Home</span>
+                                                </button>
+
+                                            </span>
+                                            <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                                        </a>
+                                    </div>
+                                    <div class="hexagon-item">
+                                        <div class="hex-item">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                        <div class="hex-item">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                        <a  class="hex-content" href="/">
+                                            <span class="hex-content-inner">
+                                                <span class="icon">
+                                                    <i class="fa fa-universal-access"></i>
+                                                </span>
+                                                <span class="title">Product</span>
+                                            </span>
+                                            <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                                        </a>
+                                    </div>
+                                        <div class="hexagon-item">
+                                          <div class="hexagon-item">
+                                            <div class="hex-item">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="hex-item">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <a  class="hex-content"
+                                                v-for="item in categories"
+                                                :key="item.id"
+                                                @click="updateFilter(item.name)">
+                                                <span class="hex-content-inner">
+                                                    <span class="icon">
+                                                        <i class="fa fa-bullseye"></i>
+                                                    </span>
+                                                    <button
+                                                        :class="{ 'active': filterCategory === 'all' }"
+                                                        >
+                                                    <span class="title">[[item.name]]</span>
+                                                    </button>
+                                                </span>
+                                                <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                                            </a>
+                                        </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    {# products #}
+      <div class="grid-container">
+          <div class="container" v-for ="item in this.filteredProducts" >
+            <div class="card" >
+              <div class="imgBx">
+                <img src="https://assets.codepen.io/4164355/shoes.png">
+              </div>
+                  <div class="contentBx">
+                    <h2>[[ item.name ]]</h2>
+                      <span class="discount bg-success">[[ item.category_name ]]</span>
+                        <div class="size">
+                          <h3>Size :</h3>
+                          <span>38</span>
+                          <span>39</span>
+                          <span>40</span>
+                          <span>41</span>
+                        </div>
+                      <div>
+                          <h4> .</h4>
+                      </div>
+                        <div class="color">
+                          <h3>Color :</h3>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </div>
+                      <br/>
+                  <a href="/detail/[[ item.id ]]/[[ item.category_name ]]/[[ item.name ]]">Buy Now</a>
+                  </div>
+            </div>
+
+          </div>
+      </div>
+  </main>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        delimiters: ["[[", "]]"],
+        data: {
+          filterCategory: "all", // Initial value from Flask
+          categories: [],
+          products: [],
+          responeData: [],
+        },
+        computed: {
+          filteredProducts() {
+            if (this.filterCategory === "all") {
+              return this.products;
+            } else {
+              return this.products.filter(
+                (product) => product.category_name === this.filterCategory
+              );
+            }
+          },
+        },
+        mounted() {
+          // $.LoadingOverlay("show");
+          axios.get("http://127.0.0.1:5000/getAllProduct").then((response) => {
+            this.products = response.data[0];
+            this.categories = response.data[1];
+            // $.LoadingOverlay("hide");
+          });
+        },
+        methods: {
+          updateFilter(category) {
+            this.filterCategory = category;
+          },
+        },
+      });
+    </script>
+  
+</body>
+</html>
